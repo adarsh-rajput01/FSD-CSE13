@@ -15,6 +15,12 @@ const getCart= async ()=>{
     return JSON.parse(data);
 };
 
+const addToCart = async (item) => {
+const products = await getCart();
+products.push(item);
+await saveCart(products); 
+};   
+
 
 const main = async () => {
 
@@ -31,6 +37,7 @@ const main = async () => {
     console.log('Entered choice:', choice); 
     switch (Number(choice)) {
         case 1:
+            await addToCart({id: 101, name: "Mobile", price: 20000, quantity: 3});
             console.log("Add to cart");
             break;
         case 2:
