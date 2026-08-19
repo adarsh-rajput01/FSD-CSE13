@@ -19,7 +19,11 @@ const addToCart = async (item) => {
 const products = await getCart();
 products.push(item);
 await saveCart(products); 
-};   
+};
+
+const saveCart =()=>{
+    console
+}
 
 
 const main = async () => {
@@ -37,17 +41,28 @@ const main = async () => {
     console.log('Entered choice:', choice); 
     switch (Number(choice)) {
         case 1:
-            await addToCart({id: 101, name: "Mobile", price: 20000, quantity: 3});
-            console.log("Add to cart");
+            let data = await cin.question("Enter id, name, price, qty: ");
+            let p = data.split(",");
+            let q = p.map((item) => item.trim());
+            let [id, name, price, qty] = q;
+            console.log(id, name, price, qty);
+            const product = {
+                id: Number(id),
+                name,
+                price:Number(price),
+                qty:Number(qty),
+            };
+            console.log(product);
             break;
+            
         case 2:
-            console.log("Show cart items");
+            showCart();
             break;
         case 3:
-            console.log("Remove Items");
+            delteFromCart();
             break;
         case 4:  
-            console.log("Update Quantity");
+            updateCart();
             break;
         case 5:
             console.log("See you later...😄");
